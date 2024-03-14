@@ -4,7 +4,6 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-from fastapi import HTTPException
 import os
 import shutil
 
@@ -43,7 +42,7 @@ class DocumentProcessor:
             updated_vector = self.create_db(doc_splits)
             return updated_vector
         except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
+            print(e)
 
 # if __name__ == "__main__":
 #     # Instantiate the DocumentProcessor class
