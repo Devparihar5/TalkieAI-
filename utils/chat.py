@@ -2,7 +2,6 @@ from langchain_community.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
 from langchain_community.llms import HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
-from fastapi import HTTPException
 
 class Chatbot:
     def __init__(self,vector_db,llm_model="mistralai/Mistral-7B-Instruct-v0.1", temperature=0.7, max_tokens=1024, top_k_samples=3):
@@ -58,4 +57,4 @@ class Chatbot:
             return response_answer
 
         except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
+            print(e)
