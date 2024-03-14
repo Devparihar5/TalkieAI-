@@ -3,7 +3,7 @@ import librosa
 import torch
 
 class AudioTranscriber:
-    def __init__(self, model_id="openai/whisper-tiny.en", cache_dir=r'/cache/'):
+    def __init__(self, model_id="openai/whisper-tiny.en", cache_dir=r'./'):
         self.processor = WhisperProcessor.from_pretrained(model_id, cache_dir=cache_dir)
         self.model = WhisperForConditionalGeneration.from_pretrained(model_id, cache_dir=cache_dir)
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
