@@ -1,0 +1,25 @@
+/* style.css */
+.reportview-container {
+    background: #f0f2f6;
+}
+.sidebar .sidebar-content {
+    background: #f0f2f6;
+}
+.stButton > button {
+    background-color: #007bff;
+    color: white;
+}
+.stButton > button:hover {
+    background-color: #0056b3;
+}
+/* .stProgress > div {
+    background-color: #007bff;
+} */
+
+.stMarkdown h1 {
+    text-align: center;
+}
+
+.stMarkdown h1 {
+    text-align: center;
+}
