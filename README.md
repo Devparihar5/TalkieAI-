@@ -11,10 +11,10 @@ Interact with videos like never before! Upload or paste a YouTube link, and our 
 ## Demo
 
 ### Fetch Video from YouTube
-![Fetch Video from YouTube](https://github.com/Devparihar5/TalkieAI-/blob/test_v1/images/video-upload.png)
+![Fetch Video from YouTube](https://github.com/Devparihar5/TalkieAI-/blob/main/images/video-upload.png)
 
 ### Chat with Your Video
-![Chat with Your Video](https://github.com/Devparihar5/TalkieAI-/blob/test_v1/images/chat.png)
+![Chat with Your Video](https://github.com/Devparihar5/TalkieAI-/blob/main/images/chat.png)
 
 
 ## Installation
