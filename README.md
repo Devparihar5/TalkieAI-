@@ -1,25 +1,29 @@
-# Speech-To-Text API
+# TalkieAI 📽️ : Talk with your Video
 
 ## Description
+Interact with videos like never before! Upload or paste a YouTube link, and our app processes the audio, transcribes it, and lets you chat directly with your video content using cutting-edge language models.
 
-This is a Simple API built using Python and FastAPI that converts speech to text using OpenAI's Whisper v3 Model from HuggingFace Transformers.
+## Features
+- Upload or paste a YouTube link to fetch your video.
+- Process the audio from the video and transcribe it using advanced models.
+- Engage in conversation directly with your video content.
 
 ## Installation
 
 ### Clone the repository and navigate to the directory
 
 ```bash
-git clone https://github.com/Arkapravo-Ghosh/speech-to-text.git
+git clone https://github.com/Devparihar5/TalkieAI-.git
 ```
 
 ```bash
-cd speech-to-text
+cd TalkieAI-
 ```
 
 ### Create a virtual environment
 
 ```bash
-python -m venv .venv
+python -m venv venv
 ```
 
 ### Activate the virtual environment
@@ -32,7 +36,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ```pwsh
-.\.venv\Scripts\activate.ps1
+.\venv\Scripts\activate.ps1
 ```
 
 </details>
@@ -41,7 +45,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
   <summary>GNU/Linux or macOS</summary>
 
 ```bash
-source .venv/bin/activate
+source venv/bin/activate
 ```
 
 </details>
@@ -59,15 +63,7 @@ pip install -r requirements.txt
 ### Run the server
 
 ```bash
-python main.py
+streamlit run Upload_Your_Video.py
 ```
 
-## Usage
-
-## Test with given sample audio file
-
-```bash
-curl -X POST -F "file=@./sample.webm" "http://localhost:5000/transcribe"
-```
-
-- `/transcribe` (POST) - Transcribes the audio file sent in the request body and returns the transcript as a JSON response.
+Feel free to engage with your videos in a whole new way with TalkieAI!
