@@ -5,30 +5,27 @@ from utils.transcribe import AudioTranscriber
 from utils.document_processor import DocumentProcessor
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-import ctypes
-
 import os
 
-
-
+# function to create pdf of transcription
 def generate_pdf_report(transcription):
     output_pdf_path = "tempfiles/transcription.pdf"
     c = canvas.Canvas(output_pdf_path, pagesize=letter)
-    max_width = letter[0] - 100  # Max width of the PDF minus some margin
-    y = 750  # Starting y position
+    max_width = letter[0] - 100 
+    y = 750  
     for line in transcription.split('\n'):
         words = line.split()
-        x = 50  # Starting x position
+        x = 50  
         for word in words:
             if c.stringWidth(word, "Helvetica", 12) + x > max_width:
-                y -= 12  # Move to the next line
-                x = 50  # Reset x position
+                y -= 12 
+                x = 50 
             c.drawString(x, y, word)
             x += c.stringWidth(word + " ", "Helvetica", 12)  # Move x to the end of the word
-        y -= 12  # Move to the next line
+        y -= 12  
     c.save()
 
-
+# setting HUGGINGFACEHUB_API_TOKEN as env variable
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 with open("style.css", "r") as file:
@@ -85,10 +82,8 @@ elif option == "YouTube Link":
                 video = yt.streams.get_highest_resolution()
                 output_video_path = "videos"
                 if os.path.exists(output_video_path):
-                    # Get a list of all items in the directory
                     items = os.listdir(output_video_path)
                     
-                    # Loop through the list of items and delete each file
                     for item in items:
                         item_path = os.path.join(output_video_path, item)
                         if os.path.isfile(item_path):
@@ -96,14 +91,11 @@ elif option == "YouTube Link":
                 
                 video.download(output_video_path)
                 if os.path.exists(output_video_path):
-                    # Get a list of all items in the directory
                     items = os.listdir(output_video_path)
                     
-                    # Find the first video file and rename it
                     for item in items:
                         item_path = os.path.join(output_video_path, item)
                         if os.path.isfile(item_path) and item.lower().endswith(".mp4"):
-                            # Rename the first video file found
                             os.rename(item_path, os.path.join(output_video_path, "sample_video.mp4"))
                 output_video_path = output_video_path + "\sample_video.mp4"
                 st.video(output_video_path)
@@ -114,16 +106,20 @@ elif option == "YouTube Link":
                 converter = VideoToAudioConverter(output_video_path)
                 converter.convert_to_audio(output_audio_path)
                 progress_bar.progress(30)
+                progress_text = st.empty()
+
 
                 progress_text.write("Transcribing audio...")
                 transcriber = AudioTranscriber()
                 transcription = transcriber.transcribe(output_audio_path)
                 generate_pdf_report(transcription)
+                progress_bar.progress(70)
+                progress_text = st.empty()
                 
                 progress_text.write("Processing document...")
                 document_processor = DocumentProcessor()
                 updated_vector = document_processor.process_document()
                 progress_text.write("100% Complete!")
-                
+                progress_bar.progress(100)
             except Exception as e:
                 st.error(f"Error: {str(e)}")
